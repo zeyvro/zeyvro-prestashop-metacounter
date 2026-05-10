@@ -1,4 +1,4 @@
-versiones-zip/
+_dist/
 
 .idea/
 *.log
