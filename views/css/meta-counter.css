@@ -1,0 +1,19 @@
+/* === Zeyvro Meta Counter v1.0.0 === */
+
+.zv-meta-counter {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+.zv-meta-counter--ok    { color: #00b88a; }   /* Zeyvro accent (slightly darker than #00D9A3 for contrast on white BO) */
+.zv-meta-counter--warn  { color: #F59E0B; }   /* amber */
+.zv-meta-counter--over  { color: #EF4444; }   /* red */
+
+/* Hide PrestaShop native char counter in the V2 product page (uses DB maxlength
+   128/512, which is not relevant for SEO). We replace it with our SEO target. */
+.js-text-with-length-counter .input-group-append {
+    display: none !important;
+}
