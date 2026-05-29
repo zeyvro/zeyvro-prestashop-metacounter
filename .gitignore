@@ -4,3 +4,7 @@ _dist/
 *.log
 .DS_Store
 Thumbs.db
+
+# Track VS Code workspace settings for sync hygiene
+!
+!settings.json
