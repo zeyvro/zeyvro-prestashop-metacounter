@@ -16,7 +16,7 @@ class Zeyvrometacounter extends Module
     {
         $this->name = 'zeyvrometacounter';
         $this->tab = 'seo';
-        $this->version = '1.0.0';
+        $this->version = '1.0.1';
         $this->author = 'Zeyvro';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = ['min' => '8.0.0', 'max' => '8.99.99'];
@@ -29,13 +29,13 @@ class Zeyvrometacounter extends Module
         $this->confirmUninstall = $this->l('Uninstall Zeyvro Meta Counter?');
     }
 
-    public function install()
+    public function install(): bool
     {
         return parent::install()
             && $this->registerHook('actionAdminControllerSetMedia');
     }
 
-    public function uninstall()
+    public function uninstall(): bool
     {
         return parent::uninstall();
     }
