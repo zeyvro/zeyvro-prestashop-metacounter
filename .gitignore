@@ -1,12 +1,36 @@
+# ZIPs y dist
 _dist/
-/vendor/
-composer.lock
+*.zip
 
-.idea/
-*.log
+# Sistema
 .DS_Store
 Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~
 
-# Track VS Code workspace settings for sync hygiene
-!
-!settings.json
+# IDEs
+.idea/
+
+
+
+
+
+# Backups y temporales
+*.bak
+*.bak_*
+*.bak.*
+debug_*
+test_*.php
+
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+
+# Composer/Node
+vendor/
+composer.lock
+node_modules/
+package-lock.json
