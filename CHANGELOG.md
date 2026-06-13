@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.2 — 2026-06-13
+
+### Añadido
+- §7.1 Auto-upgrade al subir ZIP por BO: `runAutoUpgrade()` en `__construct()` — detecta versión instalada vía `ZEYVROMETACOUNTER_VERSION` / tabla `ps_module`, lee destino de `config.xml`, ejecuta upgrade scripts intermedios en orden semver, actualiza BD automáticamente.
+- §2.1 `clearAllCaches()`: OPcache + Smarty + CCC + autoload. `try/catch \Throwable` (PHP 8.0 safe).
+- Creado `upgrade/` directory con `upgrade-1.0.2.php` (antes inexistente).
+
 ## 1.0.1 — 2026-06-04
 ### Fixed
 - `install()` y `uninstall()`: añadido return type `: bool` para coincidir con `Module` (PHPStan).
