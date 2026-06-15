@@ -120,6 +120,7 @@ class Tools {
     public static function htmlentitiesUTF8(string $str): string { return ''; }
     public static function htmlentitiesDecodeUTF8(string $str): string { return ''; }
     public static function clearSmartyCache(): void {}
+    public static function clearSf2Cache(): void {}
 }
 
 class Validate {
@@ -198,9 +199,13 @@ class Tab extends ObjectModel {
     public string $class_name = '';
     public string $module = '';
     public int $id_parent = 0;
+    public int $active = 1;
+    public string $icon = '';
     public array $name = [];
     public function __construct(int $id = 0) {}
     public function add(): bool { return false; }
+    public function save(): bool { return false; }
+    public function delete(): bool { return false; }
     public static function getIdFromClassName(string $class_name, ?int $id_lang = null): int { return 0; }
 }
 
