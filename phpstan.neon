@@ -11,12 +11,14 @@ parameters:
     scanFiles:
         - .phpstan/ps-stubs.php
         - .phpstan/ps-stubs-ns.php
+        - classes/ZeyvroModuleTrait.php
 
     parallel:
         maximumNumberOfProcesses: 1
 
     paths:
         - zeyvrometacounter.php
+        - classes
 
     excludePaths:
         - _dist

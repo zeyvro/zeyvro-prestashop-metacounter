@@ -10,13 +10,23 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
+require_once __DIR__ . '/classes/ZeyvroModuleTrait.php';
+
 class Zeyvrometacounter extends Module
 {
+    use ZeyvroModuleTrait;
+
+    const ZV_TAB_CLASS   = '';        // sin tab visible — módulo sin BO controller
+    const ZV_TAB_NAME    = '';
+    const ZV_TAB_ICON    = '';
+    const ZV_ADS_VARIANT = 'free';
+    const ZV_SCHEMA_TABV = 'A';
+    const ZV_SCHEMA_KEY  = 'ZEYVROMETACOUNTER_TABV';
     public function __construct()
     {
         $this->name = 'zeyvrometacounter';
         $this->tab = 'seo';
-        $this->version = '1.0.2';
+        $this->version = '1.0.3';
         $this->author = 'Zeyvro';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = ['min' => '8.0.0', 'max' => '8.99.99'];
@@ -110,27 +120,11 @@ class Zeyvrometacounter extends Module
                  WHERE `name` = "zeyvrometacounter"'
             );
             $this->clearAllCaches();
-        } catch (\Exception $e) {
+        } catch (\Throwable $t) {
             PrestaShopLogger::addLog(
-                'zeyvrometacounter auto-upgrade error: ' . $e->getMessage(),
+                'zeyvrometacounter auto-upgrade error: ' . $t->getMessage(),
                 3, null, 'zeyvrometacounter', 0, true
             );
-        }
-    }
-
-    public function clearAllCaches(): void
-    {
-        try {
-            if (function_exists('opcache_reset')) {
-                @opcache_reset();
-            }
-            @Tools::clearSmartyCache();
-            @Media::clearCache();
-            if (class_exists('PrestaShopAutoload')) {
-                @PrestaShopAutoload::getInstance()->generateIndex();
-            }
-        } catch (\Throwable $t) {
-            // best-effort — never break install/upgrade
         }
     }
 }

@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.3 — 2026-06-15
+
+### Añadido
+- **Retrofit ZeyvroModuleTrait (Fase 2):** `use ZeyvroModuleTrait` con 6 constantes (`ZV_TAB_CLASS=''`, `ZV_ADS_VARIANT='free'`, `ZV_SCHEMA_KEY='ZEYVROMETACOUNTER_TABV'`). Módulo sin BO controller — sin tab visible.
+- `classes/ZeyvroModuleTrait.php`: base común verbatim de `_shared/`. Incluye guard `trait_exists` para coexistir con otros módulos Zeyvro instalados simultáneamente.
+- `upgrade-1.0.3.php`: idempotente, solo limpieza de cachés.
+
+### Cambiado
+- `clearAllCaches()` delegado al trait (eliminado del módulo).
+- `runAutoUpgrade()` catch `\Exception` → `\Throwable` (compatibilidad PHP 8.0).
+
 ## 1.0.2 — 2026-06-13
 
 ### Añadido
