@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.6 — 2026-06-22
+
+### Corregido (Validator Verified+)
+- **LICENSES**: `classes/index.php` — docblock `/*` → `/**` (el Validator exige estilo docblock para file comment). EOL normalizado a LF puro en todos los `.php`/`.js`/`.css`.
+- **OPTIMIZATIONS**: `classes/ZeyvroModuleTrait.php` — mixed line endings (CRLF+LF) eliminados; ahora LF uniforme.
+- **STANDARDS**: `zeyvrometacounter.php` normalizado de CRLF a LF (los 142 findings eran las 142 líneas CRLF). `.php-cs-fixer.dist.php` actualizado: barrera `phpdoc_to_comment=>false` añadida para proteger `/**` en index.php.
+
+### Añadido
+- `upgrade-1.0.6.php`: idempotente, limpieza de cachés.
+
 ## 1.0.5 — 2026-06-22
 
 ### Corregido (Validator Verified+)

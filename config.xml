@@ -2,7 +2,7 @@
 <module>
     <name>zeyvrometacounter</name>
     <displayName><![CDATA[Zeyvro Meta Counter]]></displayName>
-    <version><![CDATA[1.0.5]]></version>
+    <version><![CDATA[1.0.6]]></version>
     <description><![CDATA[Adds an SEO-oriented character counter (60 for meta_title, 160 for meta_description) to PrestaShop backoffice forms. Hides the native counter on the V2 product page to avoid duplication.]]></description>
     <author><![CDATA[Zeyvro]]></author>
     <tab><![CDATA[seo]]></tab>

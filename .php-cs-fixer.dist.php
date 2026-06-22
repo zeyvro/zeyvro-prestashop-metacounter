@@ -39,7 +39,7 @@ return (new Config())
         'yoda_style' => false,
         'non_printable_character' => true,
         'no_superfluous_phpdoc_tags' => false,
-        // ⚠ BARRERAS IRREDUCIBLES — NO habilitar ninguna de las dos:
+        // ⚠ BARRERAS IRREDUCIBLES — NO habilitar ninguna de las siguientes:
         // Son contradicciones internas del Validator PS; NO arreglar. Standards no es auto-decline.
         //
         // 1) blank_line_after_opening_tag: añade una línea en blanco entre <?php y el
@@ -51,7 +51,12 @@ return (new Config())
         //    del Validator PS no detecta `trait X {}` dentro de un if(){} estándar, pero
         //    sí lo detecta dentro de if(...):...endif;. Convertir el guard de
         //    ZeyvroModuleTrait.php rompería el check Requirements. Ver REGLAS-DURAS §trampas.
+        //
+        // 3) phpdoc_to_comment: convierte bloques /** sin @param/@return a /* ordinario.
+        //    El Validator PS exige /** (docblock) para el file comment de los index.php
+        //    de seguridad ("You must use /** style comments for a file comment").
         'blank_line_after_opening_tag' => false,
         'no_alternative_syntax' => false,
+        'phpdoc_to_comment' => false,
     ])
     ->setFinder($finder);

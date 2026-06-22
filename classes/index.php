@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Security guard — prevents direct directory listing.
  *
  * @author    Zeyvro
