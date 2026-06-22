@@ -1,6 +1,6 @@
 <?php
 /**
- * Zeyvro Meta Counter — upgrade-1.0.3
+ * Zeyvro Meta Counter — upgrade-1.0.4
  *
  * @author    Zeyvro
  * @copyright 2026 Zeyvro
@@ -11,11 +11,11 @@ if (!defined('_PS_VERSION_')) {
 }
 
 /**
- * v1.0.3 — Retrofit ZeyvroModuleTrait: base común de código.
+ * v1.0.4 — PS9 compatibility: ps_versions_compliancy max bumped to 9.99.99.
  * Sin cambios de BD ni tabs (módulo sin BO controller).
  * Idempotente: re-ejecutar es inocuo.
  */
-function upgrade_module_1_0_3($module)
+function upgrade_module_1_0_4($module)
 {
     $module->clearAllCaches();
 

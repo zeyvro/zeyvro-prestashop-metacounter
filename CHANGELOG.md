@@ -1,5 +1,36 @@
 # Changelog
 
+## 1.0.6 — 2026-06-22
+
+### Corregido (Validator Verified+)
+- **LICENSES**: `classes/index.php` — docblock `/*` → `/**` (el Validator exige estilo docblock para file comment). EOL normalizado a LF puro en todos los `.php`/`.js`/`.css`.
+- **OPTIMIZATIONS**: `classes/ZeyvroModuleTrait.php` — mixed line endings (CRLF+LF) eliminados; ahora LF uniforme.
+- **STANDARDS**: `zeyvrometacounter.php` normalizado de CRLF a LF (los 142 findings eran las 142 líneas CRLF). `.php-cs-fixer.dist.php` actualizado: barrera `phpdoc_to_comment=>false` añadida para proteger `/**` en index.php.
+
+### Añadido
+- `upgrade-1.0.6.php`: idempotente, limpieza de cachés.
+
+## 1.0.5 — 2026-06-22
+
+### Corregido (Validator Verified+)
+- **REQUIREMENTS**: `config.xml` description alineada con `$this->description` del .php. `composer.json`: `"prepend-autoloader": false` añadido.
+- **COMPATIBILITY**: `TabCore::$active` — tres asignaciones `= 1` → `= true` en `classes/ZeyvroModuleTrait.php` (L84, L135, L144).
+- **LICENSES**: cabeceras `@author/@copyright/@license MIT` añadidas a 10 ficheros (`index.php` raíz + 5 subdirectorios + `upgrade-1.0.2.php` + `upgrade-1.0.3.php` + `upgrade-1.0.4.php` + `views/js/meta-counter.js` + `views/css/meta-counter.css`).
+- **STANDARDS**: `.php-cs-fixer.dist.php` (ruleset PS oficial `@Symfony`) aplicado; 11 ficheros fijados. Barreras irreducibles documentadas: `blank_line_after_opening_tag=>false` + `no_alternative_syntax=>false`.
+
+### Añadido
+- `upgrade-1.0.5.php`: idempotente, solo limpieza de cachés.
+- `.php-cs-fixer.dist.php`: ruleset oficial PS para Standards.
+
+## 1.0.4 — 2026-06-22
+
+### Cambiado
+- `ps_versions_compliancy['max']`: `'8.99.99'` → `'9.99.99'` — BLOCKER PS9 eliminado. El módulo ahora instala y desinstala limpio en PS 9.0 y 9.1.
+- Verificado en harness Docker: PS9.0/PHP8.4 ✅ · PS9.1/PHP8.4 ✅ · PS8.2/PHP8.1 regresión ✅. 0 Fatal/Deprecated del módulo en ninguna versión.
+
+### Añadido
+- `upgrade-1.0.4.php`: idempotente, limpieza de cachés.
+
 ## 1.0.3 — 2026-06-15
 
 ### Añadido
