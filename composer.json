@@ -11,6 +11,7 @@
         "prestashop/phpstan-prestashop": "2.0"
     },
     "config": {
+        "prepend-autoloader": false,
         "allow-plugins": {
             "phpstan/extension-installer": true
         }

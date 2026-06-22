@@ -1,4 +1,11 @@
 <?php
+/**
+ * Zeyvro Meta Counter — upgrade-1.0.3
+ *
+ * @author    Zeyvro
+ * @copyright 2026 Zeyvro
+ * @license   MIT
+ */
 if (!defined('_PS_VERSION_')) {
     exit;
 }
@@ -11,5 +18,6 @@ if (!defined('_PS_VERSION_')) {
 function upgrade_module_1_0_3($module)
 {
     $module->clearAllCaches();
+
     return true;
 }

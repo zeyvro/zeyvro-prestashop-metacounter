@@ -1,3 +1,10 @@
+/**
+ * Zeyvro Meta Counter — SEO character counter for PrestaShop backoffice.
+ *
+ * @author    Zeyvro
+ * @copyright 2026 Zeyvro
+ * @license   MIT
+ */
 (function () {
     'use strict';
 

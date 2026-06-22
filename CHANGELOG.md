@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.5 — 2026-06-22
+
+### Corregido (Validator Verified+)
+- **REQUIREMENTS**: `config.xml` description alineada con `$this->description` del .php. `composer.json`: `"prepend-autoloader": false` añadido.
+- **COMPATIBILITY**: `TabCore::$active` — tres asignaciones `= 1` → `= true` en `classes/ZeyvroModuleTrait.php` (L84, L135, L144).
+- **LICENSES**: cabeceras `@author/@copyright/@license MIT` añadidas a 10 ficheros (`index.php` raíz + 5 subdirectorios + `upgrade-1.0.2.php` + `upgrade-1.0.3.php` + `upgrade-1.0.4.php` + `views/js/meta-counter.js` + `views/css/meta-counter.css`).
+- **STANDARDS**: `.php-cs-fixer.dist.php` (ruleset PS oficial `@Symfony`) aplicado; 11 ficheros fijados. Barreras irreducibles documentadas: `blank_line_after_opening_tag=>false` + `no_alternative_syntax=>false`.
+
+### Añadido
+- `upgrade-1.0.5.php`: idempotente, solo limpieza de cachés.
+- `.php-cs-fixer.dist.php`: ruleset oficial PS para Standards.
+
 ## 1.0.4 — 2026-06-22
 
 ### Cambiado

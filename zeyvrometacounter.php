@@ -16,17 +16,18 @@ class Zeyvrometacounter extends Module
 {
     use ZeyvroModuleTrait;
 
-    const ZV_TAB_CLASS   = '';        // sin tab visible — módulo sin BO controller
-    const ZV_TAB_NAME    = '';
-    const ZV_TAB_ICON    = '';
-    const ZV_ADS_VARIANT = 'free';
-    const ZV_SCHEMA_TABV = 'A';
-    const ZV_SCHEMA_KEY  = 'ZEYVROMETACOUNTER_TABV';
+    public const ZV_TAB_CLASS = '';        // sin tab visible — módulo sin BO controller
+    public const ZV_TAB_NAME = '';
+    public const ZV_TAB_ICON = '';
+    public const ZV_ADS_VARIANT = 'free';
+    public const ZV_SCHEMA_TABV = 'A';
+    public const ZV_SCHEMA_KEY = 'ZEYVROMETACOUNTER_TABV';
+
     public function __construct()
     {
         $this->name = 'zeyvrometacounter';
         $this->tab = 'seo';
-        $this->version = '1.0.4';
+        $this->version = '1.0.5';
         $this->author = 'Zeyvro';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = ['min' => '8.0.0', 'max' => '9.99.99'];
@@ -51,6 +52,7 @@ class Zeyvrometacounter extends Module
         if ($ok) {
             $this->clearAllCaches();
         }
+
         return $ok;
     }
 
@@ -85,18 +87,27 @@ class Zeyvrometacounter extends Module
                 return;
             }
             $xmlPath = dirname(__FILE__) . '/config.xml';
-            if (!file_exists($xmlPath)) { return; }
+            if (!file_exists($xmlPath)) {
+                return;
+            }
             $xml = @simplexml_load_file($xmlPath);
-            if (!$xml) { return; }
+            if (!$xml) {
+                return;
+            }
             $target = (string) $xml->version;
-            if (!preg_match('/^\d+\.\d+\.\d+$/', $target)) { return; }
-            if (version_compare($installed, $target, '>=')) { return; }
+            if (!preg_match('/^\d+\.\d+\.\d+$/', $target)) {
+                return;
+            }
+            if (version_compare($installed, $target, '>=')) {
+                return;
+            }
             define('ZEYVROMETACOUNTER_UPGRADING', true);
             $scripts = glob(dirname(__FILE__) . '/upgrade/upgrade-*.php');
             if ($scripts) {
                 usort($scripts, function ($a, $b) {
                     $va = preg_replace('/.*upgrade-(.+)\.php$/', '$1', $a);
                     $vb = preg_replace('/.*upgrade-(.+)\.php$/', '$1', $b);
+
                     return version_compare($va, $vb);
                 });
                 foreach ($scripts as $script) {
@@ -109,6 +120,7 @@ class Zeyvrometacounter extends Module
                                 'zeyvrometacounter: upgrade script ' . $sv . ' failed',
                                 3, null, 'zeyvrometacounter', 0, true
                             );
+
                             return;
                         }
                     }
@@ -120,7 +132,7 @@ class Zeyvrometacounter extends Module
                  WHERE `name` = "zeyvrometacounter"'
             );
             $this->clearAllCaches();
-        } catch (\Throwable $t) {
+        } catch (Throwable $t) {
             PrestaShopLogger::addLog(
                 'zeyvrometacounter auto-upgrade error: ' . $t->getMessage(),
                 3, null, 'zeyvrometacounter', 0, true
