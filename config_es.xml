@@ -2,7 +2,7 @@
 <module>
     <name>zeyvrometacounter</name>
     <displayName><![CDATA[Zeyvro Meta Counter]]></displayName>
-    <version><![CDATA[1.0.3]]></version>
+    <version><![CDATA[1.0.4]]></version>
     <description><![CDATA[Contador de caracteres orientado a SEO para los campos meta del backoffice de PrestaShop.]]></description>
     <author><![CDATA[Zeyvro]]></author>
     <tab><![CDATA[seo]]></tab>

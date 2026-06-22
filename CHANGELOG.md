@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.4 — 2026-06-22
+
+### Cambiado
+- `ps_versions_compliancy['max']`: `'8.99.99'` → `'9.99.99'` — BLOCKER PS9 eliminado. El módulo ahora instala y desinstala limpio en PS 9.0 y 9.1.
+- Verificado en harness Docker: PS9.0/PHP8.4 ✅ · PS9.1/PHP8.4 ✅ · PS8.2/PHP8.1 regresión ✅. 0 Fatal/Deprecated del módulo en ninguna versión.
+
+### Añadido
+- `upgrade-1.0.4.php`: idempotente, limpieza de cachés.
+
 ## 1.0.3 — 2026-06-15
 
 ### Añadido
