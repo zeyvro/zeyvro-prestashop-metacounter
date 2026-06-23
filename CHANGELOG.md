@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.0 — 2026-06-23
+
+### Cambiado
+- **Cabecera canónica NOTICE OF LICENSE** (bloque MIT largo: NOTICE OF LICENSE + URL + `@author Zeyvro <admin@zeyvro.com>` + `@copyright` + `@license URL`) aplicada a todos los `.php` del módulo (principal, classes, upgrade/*, views/index.php, todos los index.php de seguridad). Elimina el bloque de 1 línea `@license MIT` anterior que causaba Licenses > 0 en el Validator.
+- **`.php-cs-fixer.dist.php`**: `phpdoc_to_comment => true` (actualizado desde `false` — el fixer preserva el primer `/**` de cada fichero; corregido tras validación real turnstile v1.1.3).
+- **Upgrade scripts 1.0.2–1.0.6**: reemplazado `$module->clearAllCaches()` por llamadas PS directas (`opcache_reset` + `Tools::clearSmartyCache` + `Media::clearCache`) siguiendo el patrón del gold template.
+- **index.php de seguridad**: guard `_PS_VERSION_` añadido a `classes/index.php` (faltaba); todos los index.php ahora tienen cabecera canónica + guard + redirect.
+
+### Añadido
+- `upgrade-1.1.0.php`: idempotente, limpieza de cachés.
+
 ## 1.0.6 — 2026-06-22
 
 ### Corregido (Validator Verified+)
