@@ -1,24 +1,17 @@
 <?php
 /**
- * ZeyvroModuleTrait — Base común compartida por todos los módulos Zeyvro.
+ * Zeyvro - Meta Counter for PrestaShop
  *
- * FUENTE ÚNICA: modulos-prestashop/_shared/ZeyvroModuleTrait.php
- * Se copia VERBATIM en classes/ZeyvroModuleTrait.php de cada módulo.
- * Nunca se modifica por módulo — los cambios van en la fuente y se propagan.
+ * NOTICE OF LICENSE
  *
- * Constantes que el módulo DEBE declarar (como `const` de clase):
- *   ZV_TAB_CLASS   — class_name del tab hijo  (ej. 'AdminZeyvroTurnstile')
- *   ZV_TAB_NAME    — nombre visible en el menú (ej. 'Anti SPAM')
- *   ZV_TAB_ICON    — icono Material Design     (ej. 'verified_user')
- *   ZV_ADS_VARIANT — 'free' | 'paid'
- *   ZV_SCHEMA_TABV — versión del schema de tabs (ej. 'A'); cambiar solo si la
- *                    estructura de tabs cambia para forzar re-reparación.
- *   ZV_SCHEMA_KEY  — config key del flag de auto-reparación
- *                    (ej. 'ZEYVROTURNSTILE_TABV')
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.md.
+ * It is also available through the world-wide-web at this URL:
+ * https://opensource.org/licenses/MIT
  *
- * @author    Zeyvro
+ * @author    Zeyvro <admin@zeyvro.com>
  * @copyright 2026 Zeyvro
- * @license   MIT
+ * @license   https://opensource.org/licenses/MIT  MIT License
  */
 if (!defined('_PS_VERSION_')) {
     exit;
@@ -85,7 +78,7 @@ if (!trait_exists('ZeyvroModuleTrait', false)) :
                 $parent = new Tab();
                 $parent->active = true;
                 $parent->class_name = 'AdminZeyvroParent';
-                $parent->module = '';   // compartido — NUNCA el nombre de un módulo concreto
+                $parent->module = '';
                 $parent->id_parent = $id_improve;
                 $parent->icon = 'tune';
                 $parent->name = [];
@@ -131,7 +124,6 @@ if (!trait_exists('ZeyvroModuleTrait', false)) :
         {
             $id_child = (int) Tab::getIdFromClassName(static::ZV_TAB_CLASS);
             if ($id_child) {
-                // Tab existe — normalizar SIEMPRE (puede estar roto: id_parent=0, active=0...)
                 $tab = new Tab($id_child);
                 $tab->id_parent = $id_parent;
                 $tab->module = $this->name;
@@ -231,7 +223,7 @@ if (!trait_exists('ZeyvroModuleTrait', false)) :
                     @PrestaShopAutoload::getInstance()->generateIndex();
                 }
             } catch (Throwable $t) {
-                // best-effort — nunca rompe install/upgrade
+                // best-effort
             }
         }
 
@@ -242,8 +234,6 @@ if (!trait_exists('ZeyvroModuleTrait', false)) :
         /**
          * Se dispara en cada carga del BO.
          * Guarded por flag: solo ejecuta si el schema de tabs no coincide.
-         * Garantiza que, tras subir el ZIP, los tabs se reparan en la siguiente
-         * carga sin necesidad de desinstalar ni limpiar caché manualmente.
          */
         public function hookActionAdminControllerSetMedia($params): void
         {
@@ -258,10 +248,6 @@ if (!trait_exists('ZeyvroModuleTrait', false)) :
          * INSTALL / UNINSTALL BASE
          * ======================================================================= */
 
-        /**
-         * Parte común del install: registra el hook de auto-reparación,
-         * crea/normaliza tabs, limpia cachés.
-         */
         protected function installBase(): bool
         {
             $ok = $this->registerHook('actionAdminControllerSetMedia')
@@ -273,10 +259,6 @@ if (!trait_exists('ZeyvroModuleTrait', false)) :
             return $ok;
         }
 
-        /**
-         * Parte común del uninstall: limpia tab y hook de auto-reparación.
-         * PRESERVATIVO: NO borra tablas, configuración ni datos.
-         */
         protected function uninstallBase(): void
         {
             $this->zvUninstallTab();
@@ -287,12 +269,6 @@ if (!trait_exists('ZeyvroModuleTrait', false)) :
          * PUBLICIDAD §5 — estático, sin llamadas remotas, assets locales
          * ======================================================================= */
 
-        /**
-         * Renderiza el bloque de publicidad Zeyvro.
-         * free  → branding + escaparate de módulos de pago (cards + UTM)
-         * paid  → solo branding
-         * CERO llamadas remotas — todo inline/local.
-         */
         public function renderZeyvroAds(): string
         {
             $variant = defined('static::ZV_ADS_VARIANT') ? static::ZV_ADS_VARIANT : 'free';
@@ -317,7 +293,6 @@ if (!trait_exists('ZeyvroModuleTrait', false)) :
                 return $branding . '</div>';
             }
 
-            // Free: escaparate de módulos de pago
             $cards = [
                 [
                     'name' => 'SEO Redirect 301',

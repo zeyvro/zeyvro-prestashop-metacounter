@@ -1,23 +1,38 @@
 <?php
 /**
- * Zeyvro Meta Counter — upgrade-1.0.5
+ * Zeyvro - Meta Counter for PrestaShop
  *
- * @author    Zeyvro
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.md.
+ * It is also available through the world-wide-web at this URL:
+ * https://opensource.org/licenses/MIT
+ *
+ * @author    Zeyvro <admin@zeyvro.com>
  * @copyright 2026 Zeyvro
- * @license   MIT
+ * @license   https://opensource.org/licenses/MIT  MIT License
  */
 if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-/**
- * v1.0.5 — Validator Verified+: Requirements/Compatibility/Licenses/Standards polish.
- * Sin cambios de BD ni tabs (módulo sin BO controller).
- * Idempotente: re-ejecutar es inocuo.
- */
-function upgrade_module_1_0_5($module)
+function upgrade_module_1_0_5(Module $module): bool
 {
-    $module->clearAllCaches();
+    try {
+        if (function_exists('opcache_reset')) {
+            @opcache_reset();
+        }
+        @Tools::clearSmartyCache();
+        @Media::clearCache();
 
-    return true;
+        return true;
+    } catch (Exception $e) {
+        PrestaShopLogger::addLog(
+            'zeyvrometacounter upgrade-1.0.5 error: ' . $e->getMessage(),
+            3, null, 'zeyvrometacounter', 0, true
+        );
+
+        return true;
+    }
 }

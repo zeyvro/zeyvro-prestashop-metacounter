@@ -17,9 +17,11 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-function upgrade_module_1_0_3(Module $module): bool
+function upgrade_module_1_1_0(Module $module): bool
 {
     try {
+        // v1.1.0 — Canonical NOTICE OF LICENSE header + generator-pattern cleanup.
+        // No BD changes. Idempotent: re-running is harmless.
         if (function_exists('opcache_reset')) {
             @opcache_reset();
         }
@@ -29,7 +31,7 @@ function upgrade_module_1_0_3(Module $module): bool
         return true;
     } catch (Exception $e) {
         PrestaShopLogger::addLog(
-            'zeyvrometacounter upgrade-1.0.3 error: ' . $e->getMessage(),
+            'zeyvrometacounter upgrade-1.1.0 error: ' . $e->getMessage(),
             3, null, 'zeyvrometacounter', 0, true
         );
 

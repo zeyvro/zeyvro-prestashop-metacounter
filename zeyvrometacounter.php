@@ -1,10 +1,17 @@
 <?php
 /**
- * Zeyvro Meta Counter — character counter for meta_title and meta_description in PrestaShop backoffice.
+ * Zeyvro - Meta Counter for PrestaShop
  *
- * @author    Zeyvro
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.md.
+ * It is also available through the world-wide-web at this URL:
+ * https://opensource.org/licenses/MIT
+ *
+ * @author    Zeyvro <admin@zeyvro.com>
  * @copyright 2026 Zeyvro
- * @license   MIT
+ * @license   https://opensource.org/licenses/MIT  MIT License
  */
 if (!defined('_PS_VERSION_')) {
     exit;
@@ -16,7 +23,7 @@ class Zeyvrometacounter extends Module
 {
     use ZeyvroModuleTrait;
 
-    public const ZV_TAB_CLASS = '';        // sin tab visible — módulo sin BO controller
+    public const ZV_TAB_CLASS = '';
     public const ZV_TAB_NAME = '';
     public const ZV_TAB_ICON = '';
     public const ZV_ADS_VARIANT = 'free';
@@ -27,7 +34,7 @@ class Zeyvrometacounter extends Module
     {
         $this->name = 'zeyvrometacounter';
         $this->tab = 'seo';
-        $this->version = '1.0.6';
+        $this->version = '1.1.0';
         $this->author = 'Zeyvro';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = ['min' => '8.0.0', 'max' => '9.99.99'];
@@ -47,13 +54,8 @@ class Zeyvrometacounter extends Module
 
     public function install(): bool
     {
-        $ok = parent::install()
+        return parent::install()
             && $this->registerHook('actionAdminControllerSetMedia');
-        if ($ok) {
-            $this->clearAllCaches();
-        }
-
-        return $ok;
     }
 
     public function uninstall(): bool
@@ -61,7 +63,7 @@ class Zeyvrometacounter extends Module
         return parent::uninstall();
     }
 
-    public function hookActionAdminControllerSetMedia($params)
+    public function hookActionAdminControllerSetMedia($params): void
     {
         $controller = $this->context->controller;
         if (!is_object($controller)) {
@@ -86,7 +88,7 @@ class Zeyvrometacounter extends Module
             if (!$installed || !preg_match('/^\d+\.\d+\.\d+$/', $installed)) {
                 return;
             }
-            $xmlPath = dirname(__FILE__) . '/config.xml';
+            $xmlPath = __DIR__ . '/config.xml';
             if (!file_exists($xmlPath)) {
                 return;
             }
@@ -102,7 +104,7 @@ class Zeyvrometacounter extends Module
                 return;
             }
             define('ZEYVROMETACOUNTER_UPGRADING', true);
-            $scripts = glob(dirname(__FILE__) . '/upgrade/upgrade-*.php');
+            $scripts = glob(__DIR__ . '/upgrade/upgrade-*.php');
             if ($scripts) {
                 usort($scripts, function ($a, $b) {
                     $va = preg_replace('/.*upgrade-(.+)\.php$/', '$1', $a);
@@ -131,7 +133,11 @@ class Zeyvrometacounter extends Module
                 'UPDATE `' . _DB_PREFIX_ . 'module` SET `version` = "' . pSQL($target) . '"
                  WHERE `name` = "zeyvrometacounter"'
             );
-            $this->clearAllCaches();
+            if (function_exists('opcache_reset')) {
+                @opcache_reset();
+            }
+            @Tools::clearSmartyCache();
+            @Media::clearCache();
         } catch (Throwable $t) {
             PrestaShopLogger::addLog(
                 'zeyvrometacounter auto-upgrade error: ' . $t->getMessage(),
