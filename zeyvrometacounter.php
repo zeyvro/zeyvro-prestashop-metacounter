@@ -29,12 +29,13 @@ class Zeyvrometacounter extends Module
     public const ZV_ADS_VARIANT = 'free';
     public const ZV_SCHEMA_TABV = 'A';
     public const ZV_SCHEMA_KEY = 'ZEYVROMETACOUNTER_TABV';
+    public const ZV_LICENSE_TYPE = 'free';
 
     public function __construct()
     {
         $this->name = 'zeyvrometacounter';
         $this->tab = 'seo';
-        $this->version = '1.1.1';
+        $this->version = '1.1.2';
         $this->author = 'Zeyvro';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = ['min' => '8.0.0', 'max' => '9.99.99'];
@@ -133,9 +134,6 @@ class Zeyvrometacounter extends Module
                 'UPDATE `' . _DB_PREFIX_ . 'module` SET `version` = "' . pSQL($target) . '"
                  WHERE `name` = "zeyvrometacounter"'
             );
-            if (function_exists('opcache_reset')) {
-                @opcache_reset();
-            }
             @Tools::clearSmartyCache();
             @Media::clearCache();
         } catch (Throwable $t) {

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.2 — 2026-07-04
+
+### Cambiado
+- **Tanda Trait Fase B4 — canon FULL unificado:** `classes/ZeyvroModuleTrait.php` reemplazado por copia VERBATIM del canon `_shared/ZeyvroModuleTrait.php` (sha256 `1c0a27c234f7e82f012f83fc8a98d62f0189626e17df87c181ee35ba12a59119`). Gana `renderZeyvroAds()` con feed remoto + caché 12h + i18n (antes: sin banner en absoluto — tier LEAN). Sin cambio de comportamiento en `installBase()`/`uninstallBase()`/`ensureTabs()` (módulo sin BO controller, `ZV_TAB_CLASS=''`).
+- `ZV_LICENSE_TYPE = 'free'` declarado (requerido por el builder, fail-closed).
+- `translations/es.php` creado (no existía): catálogo de las 5 cadenas `l()` reales del módulo (3 propias + 2 del banner heredado del canon).
+
 ## 1.1.1 — 2026-06-23
 
 ### Fixed
