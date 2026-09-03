@@ -84,8 +84,9 @@ Parte del catálogo Zeyvro — plugins y módulos para WordPress y PrestaShop. [
 ### Qué hace (respaldado por el código)
 
 - Inyecta CSS+JS en el backoffice mediante `hookActionAdminControllerSetMedia`.
-- El JS anade un contador de caracteres bajo cada campo `meta_title` y `meta_description`.
-- **Solapamiento medido:** `zeyvro_admintweaks` embarca una copia casi identica de este mismo `meta-counter.js` y tambien la carga.
+- El JS anade un contador de caracteres bajo cada campo `meta_title` y `meta_description`, con umbrales **60 y 160** (lineas 11-12 del JS).
+- Pinta el texto `'SEO: 42 / 60'` y aplica las clases `zv-meta-counter--ok` / `--warn` / `--over`.
+- **Solapamiento medido con `zeyvro_admintweaks`:** aquel embarca una variante de este mismo JS con **umbrales identicos (60/160)** y tambien la carga. Difieren en cabecera de licencia, idioma de comentarios, prefijo de clase (`zv-` aqui, `sb-` alli) y el texto pintado.
 
 ### Hooks
 
@@ -100,6 +101,10 @@ Parte del catálogo Zeyvro — plugins y módulos para WordPress y PrestaShop. [
 | `ZEYVROMETACOUNTER_VERSION` | version instalada, para la auto-actualizacion desde `upgrade/` |
 | `ZEYVRO_PROMO_FEED_CACHE` | cache del feed de cards promocionales Zeyvro (la pone el trait compartido) |
 | `ZEYVRO_PROMO_FEED_TS` | timestamp de ese cache (trait compartido) |
+
+### Tablas de base de datos
+
+- `No crea tablas **propias**. Buscado en las 4 rutas (`sql/`, fichero principal, `controllers/`, `classes/`) con 8 patrones distintos: 0 tablas del modulo. Las unicas tablas que aparecen son las del nucleo de PrestaShop `access` y `authorization_role`, referenciadas por `classes/ZeyvroModuleTrait.php:208` (`zvCreateTabRoles()`), no por este modulo.`
 
 ### Compatibilidad, licencia y motor de licencia
 
@@ -125,11 +130,12 @@ Parte del catálogo Zeyvro — plugins y módulos para WordPress y PrestaShop. [
 > Lista de contraste para auditar contenido de marketing. Si una afirmación no está aquí, el código no la respalda.
 
 - Anade contador de caracteres a `meta_title` y `meta_description` en el backoffice.
-- No crea tablas: 0 usos de `_DB_PREFIX_`.
+- Umbrales **60 (title) y 160 (description)**, medidos en el JS.
+- Formato del contador: `'SEO: 42 / 60'`, con clases `zv-meta-counter--ok|warn|over`.
+- No crea tablas propias (buscado en `sql/`, fichero principal, `controllers/` y `classes/`).
 - Su unica clave propia de configuracion es `ZEYVROMETACOUNTER_VERSION` (control de version, no un ajuste de usuario).
 - **No tiene pantalla de ajustes configurables**: no hay controlador admin ni tab propio.
 - Sin motor de licencia (`ZV_LICENSE_TYPE='free'`).
-- Declara PS 8.0.0 -> 9.99.99.
 
 ### No deducible del código
 
