@@ -104,7 +104,7 @@ Parte del catálogo Zeyvro — plugins y módulos para WordPress y PrestaShop. [
 
 ### Tablas de base de datos
 
-- `No crea tablas **propias**. Buscado en las 4 rutas (`sql/`, fichero principal, `controllers/`, `classes/`) con 8 patrones distintos: 0 tablas del modulo. Las unicas tablas que aparecen son las del nucleo de PrestaShop `access` y `authorization_role`, referenciadas por `classes/ZeyvroModuleTrait.php:208` (`zvCreateTabRoles()`), no por este modulo.`
+- No crea tablas **propias**. Buscado en las 4 rutas (`sql/`, fichero principal, `controllers/`, `classes/`) con 8 patrones distintos: 0 tablas del modulo. Las unicas tablas que aparecen son las del nucleo de PrestaShop `access` y `authorization_role`, referenciadas por `classes/ZeyvroModuleTrait.php:208` (`zvCreateTabRoles()`), no por este modulo.
 
 ### Compatibilidad, licencia y motor de licencia
 
