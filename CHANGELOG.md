@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.5 — 2026-09-28
+
+### Corregido (ES)
+- **Desaparecía el contador de caracteres nativo de PrestaShop en otros formularios del BO.** La regla CSS que oculta el contador nativo (el que cuenta contra el `maxlength` de la base de datos, 128 / 512) se aplicaba en todo el BO, no solo a los campos meta. En PrestaShop 8.2 quitaba, por ejemplo, el contador del mensaje en la ficha del pedido (máx. 1200), sin poner otro. Ahora solo se oculta en los campos `meta_title` / `meta_description` donde el módulo pone su contador SEO; el resto de contadores nativos se ven igual que sin el módulo.
+- **Compatibilidad anunciada:** `ps_versions_compliancy` pasa de `9.99.99` a `9.1.3`, la versión más alta probada. El README decía «8.0 – 8.x»; ahora dice lo mismo que el módulo: 8.0 – 9.1.
+- `upgrade/upgrade-1.1.5.php`: sin cambios de esquema. Invalida en OPcache solo los ficheros `.php` del módulo y limpia la caché del módulo. Idempotente.
+
+### Fixed (EN)
+- **PrestaShop's native character counter disappeared on other Back Office forms.** The CSS rule hiding the native counter (the one counting against the database `maxlength`, 128 / 512) applied to the whole Back Office, not only to the meta fields. On PrestaShop 8.2 it removed, for example, the order-message counter on the order page (max 1200) without replacing it. It is now hidden only on the `meta_title` / `meta_description` fields where the module shows its SEO counter; every other native counter looks as it does without the module.
+- **Declared compatibility:** `ps_versions_compliancy` goes from `9.99.99` to `9.1.3`, the highest tested version. The README said "8.0 – 8.x"; it now matches the module: 8.0 – 9.1.
+- `upgrade/upgrade-1.1.5.php`: no schema change. It invalidates only the module's own `.php` files in OPcache and clears the module cache. Idempotent.
+
 ## 1.1.4 — 2026-09-12
 
 ### Corregido (ES)

@@ -14,7 +14,7 @@ Backoffice → Modules → Upload a module → drop the zip → Install.
 
 ## Compatibility
 
-PrestaShop 8.0 – 8.x. Works on Products, Categories, Manufacturers, Suppliers, CMS pages — any backoffice form whose meta fields use `meta_title` / `meta_description` in their `name` or `id`.
+PrestaShop 8.0 – 9.1 (tested up to 9.1.3). Works on Products, Categories, Manufacturers, Suppliers, CMS pages — any backoffice form whose meta fields use `meta_title` / `meta_description` in their `name` or `id`.
 
 ## Uninstall
 
@@ -55,7 +55,7 @@ Backoffice → Módulos → Subir un módulo → arrastra el zip → Instalar.
 
 ### Compatibilidad
 
-PrestaShop 8.0 – 8.x. Funciona en Productos, Categorías, Fabricantes, Proveedores, páginas CMS — cualquier formulario del backoffice cuyos campos meta usen `meta_title` / `meta_description` en su `name` o `id`.
+PrestaShop 8.0 – 9.1 (probado hasta la 9.1.3). Funciona en Productos, Categorías, Fabricantes, Proveedores, páginas CMS — cualquier formulario del backoffice cuyos campos meta usen `meta_title` / `meta_description` en su `name` o `id`.
 
 ### Desinstalar
 

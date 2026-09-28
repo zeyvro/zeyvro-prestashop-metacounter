@@ -18,8 +18,10 @@
 .zv-meta-counter--warn  { color: #F59E0B; }   /* amber */
 .zv-meta-counter--over  { color: #EF4444; }   /* red */
 
-/* Hide PrestaShop native char counter in the V2 product page (uses DB maxlength
-   128/512, which is not relevant for SEO). We replace it with our SEO target. */
-.js-text-with-length-counter .input-group-append {
+/* Hide PrestaShop native char counter ONLY where this module shows its SEO counter
+   (meta_title / meta_description: the JS inserts .zv-meta-counter right after the field).
+   The native counter uses the DB maxlength (128/512), not relevant for SEO. Any other
+   native counter in the BO (e.g. the order message, max 1200) stays visible. */
+.js-text-with-length-counter .zv-meta-counter ~ .input-group-append {
     display: none !important;
 }
