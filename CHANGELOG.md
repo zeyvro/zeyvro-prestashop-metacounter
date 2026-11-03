@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.6 - 2026-11-03
+
+### Corregido (ES)
+- `PrestaShopLogger::addLog()` usa un tipo de objeto solo con letras: PS 8.0.x rechazaba el guion bajo y el registro fallaba.
+- Upgrade 1.1.6 sin cambios de esquema ni de configuración.
+
 ## 1.1.5 — 2026-09-28
 
 ### Corregido (ES)

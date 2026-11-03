@@ -28,7 +28,7 @@ class Zeyvrometacounter extends Module
     {
         $this->name = 'zeyvrometacounter';
         $this->tab = 'seo';
-        $this->version = '1.1.5';
+        $this->version = '1.1.6';
         $this->author = 'Zeyvro';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = ['min' => '8.0.0', 'max' => '9.1.3'];
