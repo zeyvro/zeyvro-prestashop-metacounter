@@ -28,10 +28,10 @@ class Zeyvrometacounter extends Module
     {
         $this->name = 'zeyvrometacounter';
         $this->tab = 'seo';
-        $this->version = '1.1.6';
+        $this->version = '1.1.7';
         $this->author = 'Zeyvro';
         $this->need_instance = 0;
-        $this->ps_versions_compliancy = ['min' => '8.0.0', 'max' => '9.1.3'];
+        $this->ps_versions_compliancy = ['min' => '8.0.0', 'max' => '9.2.0'];
         $this->bootstrap = true;
 
         parent::__construct();

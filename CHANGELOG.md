@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.7 - 2026-11-04
+
+### Cambiado (ES)
+- Compatibilidad declarada hasta PrestaShop 9.2.0 (antes 9.1.3): PS 9.2 rechazaba la instalación.
+- Upgrade 1.1.7 sin cambios de esquema ni de configuración.
+
 ## 1.1.6 - 2026-11-03
 
 ### Corregido (ES)
